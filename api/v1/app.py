@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''
-Createw Flask app; and register the blueprint app_views to Flask instance app.
+Create a Flask app; and register the blueprint app_views to Flask instance app.
 '''
 
 from os import getenv
@@ -17,7 +17,7 @@ CORS(app, resources={r'/api/v1/*': {'origins': '0.0.0.0'}})
 app.register_blueprint(app_views)
 app.url_map.strict_slashes = False
 
-
+# The teardown
 @app.teardown_appcontext
 def teardown_engine(exception):
     '''
@@ -35,7 +35,7 @@ def not_found(error):
     response = {'error': 'Not found'}
     return jsonify(response), 404
 
-
+# the threaded host
 if __name__ == '__main__':
     HOST = getenv('HBNB_API_HOST', '0.0.0.0')
     PORT = int(getenv('HBNB_API_PORT', 5000))
